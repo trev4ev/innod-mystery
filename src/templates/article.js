@@ -1,24 +1,17 @@
 import React from 'react';
-const moment = require('moment');
 
 class ArticleTemplate extends React.Component {
     render() {
-        const {
-          title,
-          author,
-          date,
-          article: { article },
-          coverPhoto: {
-            file: { url: coverPhoto }
-          }
-        } = this.props.data.contentfulBlogPost;
-
-        return (<div>
-          <h1>{title}</h1>
-          <img src={coverPhoto} />
-          <sub>By {author} on {moment(date).format('MM/DD/YYYY')}</sub>
-          <p>{article}</p>
-        </div>);
+        let blogPost = this.props.data.contentfulBlogPost;
+        return (
+            <div>
+                <h1>{blogPost.title}</h1>
+                <img src={blogPost.coverPhoto ? blogPost.coverPhoto.file.url : ''}  />
+                <h3>By {blogPost.author} </h3>
+                <h3>{blogPost.date}</h3>
+                <p>{blogPost.article.article}</p>
+            </div>
+        );
     }
 }
 
