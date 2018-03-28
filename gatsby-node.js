@@ -36,7 +36,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
           let blogPosts = queryResult.data.allContentfulBlogPost.edges;
           blogPosts.forEach(({node:post}, index) => {
               createPage({
-                  path: `/article/${moment(post.date).format('YYYY-MM-DD-hh-mm')}`,
+                  path: `/article/${index}`,
                   component: path.resolve('src/templates/article.js'),
                   context: {id: post.id}
               });
